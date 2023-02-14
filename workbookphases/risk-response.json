@@ -1,0 +1,88 @@
+{
+    "count": 1,
+    "num_pages": 1,
+    "data": [
+        {
+            "id": 45,
+            "name": "Mitigate",
+            "order": 1,
+            "status": 0,
+            "create_time": "2023-02-08T06:55:51.027420Z",
+            "modified_time": "2023-02-08T06:55:51.027671Z",
+            "container": 12,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 159,
+                    "name": "Review and Block Indicators",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 12,
+                    "phase": 45,
+                    "description": "1. \"risk_notable_review_indicators\" creates a prompt you can use to review suspicious indicators from the investigate playbook and mark them to be blocked.\n\n2. \"risk_notable_block_indicators\" will then find indicators that are marked for block and pass them to playbooks designed to mitigate those indicators.",
+                    "suggestions": {
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "risk_notable_review_indicators",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "risk_notable_block_indicators",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:55:51.040036Z",
+                    "modified_time": "2023-02-08T06:55:51.040357Z",
+                    "notified": false,
+                    "is_note_required": false,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 158,
+                    "name": "Protect Assets and Users",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 12,
+                    "phase": 45,
+                    "description": "1. \"risk_notable_protect_assets_and_users\" will locate asset and identity information for the current investigation. If there are protection playbooks available (such as playbooks that disable user accounts or quarantine devices), you will be prompted to determine which assets and entities to protect.",
+                    "suggestions": {
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "risk_notable_protect_assets_and_users",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:55:51.033817Z",
+                    "modified_time": "2023-02-08T06:55:51.034101Z",
+                    "notified": false,
+                    "is_note_required": false,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        }
+    ]
+}

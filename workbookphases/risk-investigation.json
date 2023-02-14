@@ -1,0 +1,129 @@
+{
+    "count": 1,
+    "num_pages": 1,
+    "data": [
+        {
+            "id": 44,
+            "name": "Investigate",
+            "order": 1,
+            "status": 0,
+            "create_time": "2023-02-08T06:55:24.872248Z",
+            "modified_time": "2023-02-08T06:55:24.872488Z",
+            "container": 11,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 157,
+                    "name": "Preprocess",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 11,
+                    "phase": 44,
+                    "description": "1. \"risk_notable_preprocess\" prepares the notable for investigation, links back to the notable in Enterprise Security, and updates the container metadata.\n\n2. \"risk_notable_import_data\" handles finding associated artifacts and importing them into the playbook\n\n3. Start triage of the event by selecting \"start_investigation\" which will assign the owner, move the status to Open, and finish the first task.",
+                    "suggestions": {
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "risk_notable_preprocess",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "risk_notable_import_data",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "start_investigation",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:55:24.891474Z",
+                    "modified_time": "2023-02-08T06:55:24.891770Z",
+                    "notified": false,
+                    "is_note_required": false,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 156,
+                    "name": "Investigate",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 11,
+                    "phase": 44,
+                    "description": "1. Review evidence collected by playbooks.\n- \"risk_notable_enrich\" handles investigating specific indicators\n- Perform additional analysis and information gathering where necessary\n\n2. \"risk_notable_merge_events\" will show any related events and prompt the user to merge those events into a case either individually or all at once.\n\n3. When finished reviewing evidence, Complete Task",
+                    "suggestions": {
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "risk_notable_enrich",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "risk_notable_merge_events",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:55:24.886137Z",
+                    "modified_time": "2023-02-08T06:55:24.886422Z",
+                    "notified": false,
+                    "is_note_required": false,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 155,
+                    "name": "Render Verdict",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 11,
+                    "phase": 44,
+                    "description": "1. Finish Initial Triage by selecting a response and providing justification.\n- \"risk_notable_verdict\" will load your available playbooks that have the tag \"response_option\" and present them as options in a prompt. It will also load the Risk Response workbook containing tasks to block indicators and protect entities.",
+                    "suggestions": {
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "risk_notable_verdict",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:55:24.879444Z",
+                    "modified_time": "2023-02-08T06:55:24.879749Z",
+                    "notified": false,
+                    "is_note_required": false,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        }
+    ]
+}

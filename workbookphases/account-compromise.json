@@ -1,0 +1,575 @@
+{
+    "count": 3,
+    "num_pages": 1,
+    "data": [
+        {
+            "id": 34,
+            "name": "Detection and Analysis",
+            "order": 1,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:35.681089Z",
+            "modified_time": "2023-02-08T06:53:35.681318Z",
+            "container": 8,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 131,
+                    "name": "Contact account owner",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "If situational awareness concerns allow it, contact the legitimate owner of the account to gather additional insight, rule out false positives, and provide guidance on how to cooperate.",
+                    "suggestions": {
+                        "actions": [
+                            "get user",
+                            "send email",
+                            "send message",
+                            "ask question"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.736187Z",
+                    "modified_time": "2023-02-08T06:53:35.736450Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 130,
+                    "name": "Determine the scope of the compromise",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "Determine the resources and capabilities available to the compromised account. Consider other types of accounts that can also be accessed based on the initial compromise. Is this account an Administrative account? What systems has the account logged into?",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "get user info",
+                            "get user attributes",
+                            "list sessions"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.731184Z",
+                    "modified_time": "2023-02-08T06:53:35.731449Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 129,
+                    "name": "Analyze usage of access",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "Query monitoring systems to determine which of the potential resources and capabilities were actually used by the adversary. Look for patterns in targeted resources and capabilities. Was the compromised account used to install or download something? Were credentials to other accounts collected and used?",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "list processes",
+                            "list connections",
+                            "get command history"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "ssh_endpoint_investigate",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.725838Z",
+                    "modified_time": "2023-02-08T06:53:35.726106Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 128,
+                    "name": "Estimate impact",
+                    "order": 4,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "Estimate the business impact to appropriately allocate priority and resources.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "hunt hash",
+                            "hunt malware"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.720556Z",
+                    "modified_time": "2023-02-08T06:53:35.720833Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 127,
+                    "name": "Track stolen credentials",
+                    "order": 5,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "If compromised credentials were used, try to determine where else they may grant access.",
+                    "suggestions": {
+                        "actions": [
+                            "run query"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "excessive_account_lockouts_enrichment_and_response",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.715399Z",
+                    "modified_time": "2023-02-08T06:53:35.715681Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 126,
+                    "name": "Investigate external communications",
+                    "order": 6,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "Look for exfiltration and/or command and control activity. Inspect network traffic with abnormal content, focusing on traffic to external hosts and internal systems that are not normally connected to the system under investigation.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "list connections",
+                            "hunt domain"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "simple_network_enrichment",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "ssh_endpoint_investigate",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.709933Z",
+                    "modified_time": "2023-02-08T06:53:35.710199Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 125,
+                    "name": "Determine initial access mechanism",
+                    "order": 7,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "Attempt to trace activity back to the point of initial access. Consider phishing, watering hole attacks, public-facing exploits, supply chain compromises, and other common attack mechanisms.",
+                    "suggestions": {
+                        "actions": [
+                            "run query"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.704312Z",
+                    "modified_time": "2023-02-08T06:53:35.704578Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 124,
+                    "name": "Detect persistent system access",
+                    "order": 8,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "Look for attempts to establish persistent access to one or more systems. The persistence technique could include an email forwarding rule for an email account, a scheduled task on an endpoint, a newly added login method for a business application, or a wide array of others. One non-exhaustive list of persistence techniques is in the MITRE ATT&CK framework (https://attack.mitre.org/tactics/TA0003/) and another for Windows endpoints in particular is within the SysInternals Autoruns tool.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "run script",
+                            "list packages",
+                            "get command history"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.699312Z",
+                    "modified_time": "2023-02-08T06:53:35.699580Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 123,
+                    "name": "Enumerate other similarly vulnerable accounts",
+                    "order": 9,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "If an initial attack vector or other activity pattern is found, use it to look for other similarly compromised accounts.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "list endpoints"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.693931Z",
+                    "modified_time": "2023-02-08T06:53:35.694201Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 122,
+                    "name": "Notify stakeholders",
+                    "order": 10,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 34,
+                    "description": "Notify incident response leadership, system owners, and other stakeholders in accordance with established incident notification and escalation procedures.",
+                    "suggestions": {
+                        "actions": [
+                            "send email",
+                            "send message",
+                            "get oncall user",
+                            "create ticket"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "email_notification_for_malware",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.688059Z",
+                    "modified_time": "2023-02-08T06:53:35.688333Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 35,
+            "name": "Containment, Eradication, and Recovery",
+            "order": 2,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:35.741105Z",
+            "modified_time": "2023-02-08T06:53:35.741316Z",
+            "container": 8,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 134,
+                    "name": "Disable account",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 35,
+                    "description": "If the business risk is deemed acceptable, disable the account or reset credentials to prevent further malicious usage.",
+                    "suggestions": {
+                        "actions": [
+                            "reset password",
+                            "disable user",
+                            "add firewall rule",
+                            "shutdown system"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "compromised_email_containment",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "excessive_account_lockouts_enrichment_and_response",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "macos_root_password_mitigate",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.756609Z",
+                    "modified_time": "2023-02-08T06:53:35.756953Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 133,
+                    "name": "Remove persistent system access",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 35,
+                    "description": "If persistent access mechanisms were detected, remove them by uninstalling software, unhooking libraries, reimaging systems, disabling compromised credentials, or implementing other remediations. If this action will cause a service outage, it may be prudent to notify the affected teams or organizations.",
+                    "suggestions": {
+                        "actions": [
+                            "block hash",
+                            "run command",
+                            "run script",
+                            "restart system",
+                            "block file path",
+                            "block application",
+                            "revert vm"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.751276Z",
+                    "modified_time": "2023-02-08T06:53:35.751666Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 132,
+                    "name": "Mitigate or remediate vulnerabilities",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 35,
+                    "description": "If any vulnerabilities were used in this compromise, find a way to mitigate or remediate them. This could be a system update, a change in software, disabling a certain feature, a change in policy, or another action.",
+                    "suggestions": {
+                        "actions": [
+                            "deploy patch",
+                            "run script",
+                            "update device"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.747167Z",
+                    "modified_time": "2023-02-08T06:53:35.747423Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 36,
+            "name": "Post-incident Activity",
+            "order": 3,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:35.761259Z",
+            "modified_time": "2023-02-08T06:53:35.761538Z",
+            "container": 8,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 137,
+                    "name": "Notify necessary parties",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 36,
+                    "description": "Determine if a regulatory risk calls for a notification to an internal or external compliance organization. Also consider an informational notice to users to prevent similar compromises through improved security hygiene.",
+                    "suggestions": {
+                        "actions": [
+                            "send email",
+                            "send message"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.793176Z",
+                    "modified_time": "2023-02-08T06:53:35.793572Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 136,
+                    "name": "Tune prevention systems",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 36,
+                    "description": "Depending on the mechanism of access and the systems affected, there may be a clear next step to prevent similar compromises. This may involve deployment of strong multi-factor authentication, improved automated response, stronger application of least privilege, user training, and/or a wide array of other defensive measures. Consider using CIS Cybersecurity Best Practices (https://www.cisecurity.org/cybersecurity-best-practices/) or a similar framework to assess improvements in prevention.",
+                    "suggestions": {
+                        "actions": [
+                            "scan network",
+                            "deploy patch",
+                            "create ticket"
+                        ],
+                        "playbooks": []
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.784179Z",
+                    "modified_time": "2023-02-08T06:53:35.784556Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 135,
+                    "name": "Tune detection systems",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 8,
+                    "phase": 36,
+                    "description": "Any of the steps taken within the Detection and Analysis phase may be candidates for automated or regularly scheduled detections to find similar activity. Focus on the most generalizable patterns that will catch high-impact compromises as early as possible.",
+                    "suggestions": {
+                        "actions": [
+                            "run query"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "track_active_directory_admin_users",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:35.771765Z",
+                    "modified_time": "2023-02-08T06:53:35.772052Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1013 @@
+{
+    "count": 6,
+    "num_pages": 1,
+    "data": [
+        {
+            "id": 52,
+            "name": "Ingestion",
+            "order": 1,
+            "status": 0,
+            "create_time": "2023-02-08T06:57:27.235993Z",
+            "modified_time": "2023-02-08T06:57:27.236226Z",
+            "container": 14,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 187,
+                    "name": "Create ticket",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 52,
+                    "description": "Create any necessary tickets or tracking documents describing the initial conditions of the suspicious email investigation. As additional information is collected or actions are taken in the following tasks and phases, update the ticket with links and relevant information to allow collaboration and tracking.",
+                    "suggestions": {
+                        "actions": [
+                            "create ticket",
+                            "send email",
+                            "send message"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "user_approved_ticket_creation",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.256113Z",
+                    "modified_time": "2023-02-08T06:57:27.256384Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 186,
+                    "name": "Ingest email",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 52,
+                    "description": "Identify and ingest the suspicious email into Phantom. Actual steps vary depending on how the Phantom event is created and where the suspicious email resides. For example, if the suspicious email is sent to a dedicated email address for suspected phishing attempts, Phantom can poll that inbox directly with an App such as IMAP, EWS for Exchange, EWS for Office, or GSuite for GMail. This will create the event in Phantom and populate it with email headers, URL artifacts, domain artifacts, file attachments, to/from addresses, the text of the raw email, and other metadata. Alternatively, if the email is not already ingested directly into Phantom the \"get email\" action may be useful to retrieve it. For example, if a Splunk Notable Event based on the Email datamodel is used to detect a suspicious email, Phantom may be able to run \"get email\" to ingest the email based on the IMAP UID or other identifier. Another possible scenario is that the email of interest is included as an attachment on the email received by Phantom. In this case the \"extract email\" action may be able to ingest the email if it is in the .msg or .eml format.",
+                    "suggestions": {
+                        "actions": [
+                            "get email",
+                            "extract email"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.249935Z",
+                    "modified_time": "2023-02-08T06:57:27.250320Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 185,
+                    "name": "Extract actionable metadata and files",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 52,
+                    "description": "Depending on how the email was ingested, additional steps may be required to extract actionable metadata and files. For example, if the suspicious email is attached to the Phantom event as a file, the \"extract ioc\" action can be used to extract URLs, domain names, IP addresses, file hashes, and whole file attachments. In some cases specific Playbooks or ingestion scripts may need to be written to extract or reformat fields from the email. Be aware that malicious emails may obfuscate links and file attachments, so it may be necessary to view the email in a sandboxed email client to see it in the same context as a user would see it.",
+                    "suggestions": {
+                        "actions": [
+                            "extract ioc"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.243530Z",
+                    "modified_time": "2023-02-08T06:57:27.243836Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 53,
+            "name": "External Investigation",
+            "order": 2,
+            "status": 0,
+            "create_time": "2023-02-08T06:57:27.261559Z",
+            "modified_time": "2023-02-08T06:57:27.261874Z",
+            "container": 14,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 193,
+                    "name": "Investigate URLs",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 53,
+                    "description": "Perhaps the most common email attack vector is a clickable link that brings a user to a malicious website. The malicious website may collect credentials or other confidential information, it may attempt to exploit the user's browser, it may lead the user to download a malicious file, or it may simply gather preliminary fingerprint information about the user to inform further operations. Investigate all URLs contained in the suspicious email using a mix of automated and manual techniques. Query threat intelligence services and other sources of reputation information to see if the URLs are linked to known malicious activity. Check the categorization of the URLs and their popularity using services such as Censys or Alexa. Determine whether the URL is spoofing a brand using a similar spelling, a unicode substitution, or an out-of-order domain name. Also consider using a less passive technique that analyzes the current state of the URL, such as a sandboxed URL detonation, a website scanning tool such as urlscan.io or SSL Labs, a manual inspection from a sandboxed environment, or a website screenshot engine such as ScreenShot Machine. Consider that targeted attacks may only reveal the malicious behavior of a website if the user agent and/or the source address of the request matches the target environment. The output of this task might be more linked URLs, the domain names of the underlying servers responding to the request, other domain names used by the website, IP addresses, or downloadable files. All of the above should be passed on to further investigative tasks if needed.",
+                    "suggestions": {
+                        "actions": [
+                            "url reputation",
+                            "lookup url",
+                            "detonate url",
+                            "get screenshot",
+                            "run query"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "simple_network_enrichment",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "phishme_email_investigate_and_respond",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "symantec_ioc_data_enhancement",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "phishing_investigate_and_respond",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.289116Z",
+                    "modified_time": "2023-02-08T06:57:27.289501Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 192,
+                    "name": "Investigate file attachments",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 53,
+                    "description": "Another common email attack vector is a malicious file attachment. Any file could be malicious, but most attacks involve executables, scripts, or documents. Investigate these files either using a whole copy of the file or the file hash. Query threat intelligence and reputation databases using the hash to see if the file has been seen before, to see if there is suspicious activity associated with the file, and to learn more about the file's behavior. Query for previous analyses or submit the file for examination in a dynamic or static tool to check for potentially malicious behaviors or properties. Actions used in this task may extract associated URLs, domain names, IP addresses, or secondary file hashes which should be explored further in other tasks.",
+                    "suggestions": {
+                        "actions": [
+                            "file reputation",
+                            "lookup hash",
+                            "analyze file",
+                            "extract ioc",
+                            "detonate file",
+                            "run query",
+                            "get report",
+                            "get file"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "mcafee_phishing_attachment_investigate",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.284767Z",
+                    "modified_time": "2023-02-08T06:57:27.285147Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 191,
+                    "name": "Investigate email addresses and headers",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 53,
+                    "description": "The source email address and other headers contain a wide variety of information about the source environment of the email and the infrastructure used to send and receive it. Use a mix of automated and manual analysis to determine where the email came from and whether it uses headers in a suspicious way. Query threat intelligence and reputation databases using the \"From\", \"Sender\", and \"Reply-to\" addresses, as well as any other email addresses in the other header fields. Compare the display names of these fields to the actual values to see if misleading names are used. Check if the servers that received the email marked it with the appropriate authentication results for SPF, DKIM, and/or DMARC. If needed use Microsoft Message Header Analyzer, MxToolbox, or other tools to interpret the remaining headers. Outputs of this task such as domain names and IP addresses should be passed on to further tasks.",
+                    "suggestions": {
+                        "actions": [
+                            "email reputation",
+                            "reverse email",
+                            "lookup email"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.280716Z",
+                    "modified_time": "2023-02-08T06:57:27.281092Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 190,
+                    "name": "Investigate domains",
+                    "order": 4,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 53,
+                    "description": "At this point domain names from various sources should be collected in the event, including email sending and receiving servers, web servers from URLs in the email, domains associated to other indicators in threat intelligence databases, and domains contained in the file attachment or detected by the detonation of the file attachment. Check each of these against threat intelligence and reputation databases, passive DNS trackers, whois services, and other information services. Look for known malicious or unknown domains, focusing more on those associated to clickable URLs and file attachments. Evaluate what services are running on each suspicious domain using a scanning service such as Censys or Shodan. Check the TLS certificate (if any), the website categorization, the popularity, and any other available information. Compare this information to the expected outcome given the alleged context of the email. For unknown domains, consider the domain history, the hosting provider, and whether the domain name appears to have been dynamically generated. IP addresses currently and previously associated with the domain should be further processed elsewhere in this case.",
+                    "suggestions": {
+                        "actions": [
+                            "domain reputation",
+                            "domain dns history",
+                            "geolocate domain",
+                            "lookup domain",
+                            "query domain",
+                            "reverse domain",
+                            "reverse email domain",
+                            "whois domain"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "simple_network_enrichment",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "symantec_ioc_data_enhancement",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "phishing_investigate_and_respond",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.276216Z",
+                    "modified_time": "2023-02-08T06:57:27.276600Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 189,
+                    "name": "Investigate IP addresses",
+                    "order": 5,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 53,
+                    "description": "IP addresses may be involved in this investigation for several reasons. Some email headers can contain IP addresses (such as X-Originating-IP), URLs can contain IP addresses instead of hostnames, file attachments can contain IP addresses or generate IP addresses and try to connect to them (like domain generation algorithms), and IP addresses can be added to the event through association or domain name resolution in other tasks within this investigation. IP addresses in URLs that are not organization internal IP addresses should be considered highly suspicious. Investigate all suspicious IP addresses by checking their reputation, geolocating them, gathering whois information, gathering DNS history information, and gathering information from other available services.",
+                    "suggestions": {
+                        "actions": [
+                            "ip reputation",
+                            "lookup ip",
+                            "whois ip",
+                            "ip dns history",
+                            "query ip",
+                            "get ip risk"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "simple_network_enrichment",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "threatquotient_investigate_and_respond",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.271811Z",
+                    "modified_time": "2023-02-08T06:57:27.272196Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 188,
+                    "name": "Investigate email subject and body",
+                    "order": 6,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 53,
+                    "description": "The subject and body of an email can be malicious without containing a single URL or file attachment. The possibilities include emails that simply ask the receiver to reply with confidential information, emails that contain instructions to do insecure things, emails that manipulate automated systems which are parsing the email, and emails that prime the receiver for other interactions. Malicious emails often use current events such as tax season, a hurricane, or other publicly available information to establish a sense of trust or an illusion of urgency. Social engineering is perhaps the hardest technique to detect in an automated fashion, often requiring manual investigation. Consider the context of the message, the intended recipient, and the identity of the sender or alleged sender. It may be necessary to ask the recipient user if they think the email is legitimate.",
+                    "suggestions": {
+                        "actions": [
+                            "ask question"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.268016Z",
+                    "modified_time": "2023-02-08T06:57:27.268272Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 54,
+            "name": "Internal Hunting",
+            "order": 3,
+            "status": 0,
+            "create_time": "2023-02-08T06:57:27.293094Z",
+            "modified_time": "2023-02-08T06:57:27.293378Z",
+            "container": 14,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 197,
+                    "name": "Hunt email activity",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 54,
+                    "description": "Find other similar emails sent into the organization based on the sender address, sender domain, subject, embedded URLs, file attachments, or other similar attributes shared across multiple emails. If possible determine which emails were opened, forwarded, deleted, marked as spam, or reported as potential phishing. Consider which types of users are targeted and why. Also check whether internal users replied to the emails and what information was contained in the replies.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "run command",
+                            "hunt email",
+                            "get email",
+                            "get user"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.312286Z",
+                    "modified_time": "2023-02-08T06:57:27.312667Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 196,
+                    "name": "Hunt network activity",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 54,
+                    "description": "Based on previously collected information try to determine whether or not URLs in the email were clicked, phishing websites were visited, or other suspicious network connections were made from the computers of users who opened the email. This could be done using many types of network monitoring, including netflow, full packet capture, DNS logging, and/or endpoint monitoring.",
+                    "suggestions": {
+                        "actions": [
+                            "hunt domain",
+                            "hunt ip",
+                            "hunt url",
+                            "run query"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "zscaler_hunt_and_block_url",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "ip_investigate_and_report",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.307630Z",
+                    "modified_time": "2023-02-08T06:57:27.307911Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 195,
+                    "name": "Hunt file executions",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 54,
+                    "description": "If a file attachment was included with the email, try to determine which users downloaded the attachment and which users executed it or opened it in some other way. Use the file hash of the attachment to search across endpoint monitoring or network monitoring solutions for the transmission and/or execution of the file. If executions are detected, try to determine the behavior of the created process. If a potentially malicious document or other file type was opened, try to determine which application opened it and whether the file exploited or abused the opening application.",
+                    "suggestions": {
+                        "actions": [
+                            "hunt file",
+                            "hunt hash",
+                            "get file",
+                            "run query",
+                            "get process file",
+                            "get process detail",
+                            "get system info"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "zscaler_malicious_file_response",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.303482Z",
+                    "modified_time": "2023-02-08T06:57:27.303889Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 194,
+                    "name": "Hunt user activity",
+                    "order": 4,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 54,
+                    "description": "If a phishing attempt or other user account compromise attempt is suspected, investigate how the credentials or account access are being used. Enumerate resources available to the account and search the access logs for those resources, looking for anomalous usage patterns.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "get user",
+                            "get user importance",
+                            "get user attributes",
+                            "hunt user",
+                            "list user groups",
+                            "ask question"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "track_active_directory_admin_users",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.299521Z",
+                    "modified_time": "2023-02-08T06:57:27.299803Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 55,
+            "name": "Enforcement and increased monitoring",
+            "order": 4,
+            "status": 0,
+            "create_time": "2023-02-08T06:57:27.317163Z",
+            "modified_time": "2023-02-08T06:57:27.317366Z",
+            "container": 14,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 202,
+                    "name": "Block or monitor email activity",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 55,
+                    "description": "If specific malicious emails have been identified, delete them from any mailboxes in which they still pose a threat. Similarly, if a sender address or an entire sender domain is found to be malicious, block inbound email from that source. Set filtering rules to block inbound email or increase monitoring of email based on other detected characteristics of an email campaign or malicious technique.",
+                    "suggestions": {
+                        "actions": [
+                            "delete email",
+                            "block sender",
+                            "blacklist sender",
+                            "blacklist email",
+                            "move email"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.366710Z",
+                    "modified_time": "2023-02-08T06:57:27.366966Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 201,
+                    "name": "Block or monitor network activity",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 55,
+                    "description": "Based on gathered indicators and metadata, block or increase monitoring of malicious network connections associated with the suspicious email. Prevent other receivers of similar phishing emails from accessing the clickable URL by blocking that URL itself, the underlying domain name, and/or the underlying IP addresses. If malware or unwanted software was detected, block outbound connections known to be associated with that malware based on threat intelligence or dynamic analysis. If the threat is severe enough, consider isolating entire portions of the network.",
+                    "suggestions": {
+                        "actions": [
+                            "block url",
+                            "blacklist url",
+                            "disallow url",
+                            "unwhitelist url",
+                            "block domain",
+                            "blacklist domain",
+                            "block ip",
+                            "blacklist ip",
+                            "block network"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "zscaler_hunt_and_block_url",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "user_prompt_and_block_domain",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.362654Z",
+                    "modified_time": "2023-02-08T06:57:27.362919Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 200,
+                    "name": "Block or monitor file executions",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 55,
+                    "description": "Based on gathered indicators and metadata, block or increase monitoring of endpoint activity caused by the suspicious email. This could mean blocking the hash of the file attachment, blocking the hash of a file downloaded from a URL in an email, blocking a malicious hash associated with the email by threat intelligence, or blocking secondary executions such as dropped stages of malware identified from dynamic analysis.",
+                    "suggestions": {
+                        "actions": [
+                            "block hash",
+                            "block file path",
+                            "remove file",
+                            "delete file"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "zscaler_malicious_file_response",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "wannacry_remediate",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "protectwise_investigate_and_respond",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.357567Z",
+                    "modified_time": "2023-02-08T06:57:27.357982Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 199,
+                    "name": "Contain endpoints",
+                    "order": 4,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 55,
+                    "description": "If an endpoint compromise is suspected, it may be necessary to quarantine or otherwise contain that endpoint until further investigation and remediation can be done. Consider the criticality of the system and the likelihood of a compromise. In other cases simply increasing the monitoring or scanning for more information may be prudent.",
+                    "suggestions": {
+                        "actions": [
+                            "quarantine device",
+                            "tag device",
+                            "scan endpoint",
+                            "snapshot instance"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "rootkit_remediate",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.345820Z",
+                    "modified_time": "2023-02-08T06:57:27.346216Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 198,
+                    "name": "Contain user accounts",
+                    "order": 5,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 55,
+                    "description": "If a user account compromise is suspected, it may be necessary to reset the credentials, reduce the account privileges, or disable the account until further investigation is completed.",
+                    "suggestions": {
+                        "actions": [
+                            "disable user",
+                            "deactivate user",
+                            "logoff user",
+                            "ask question",
+                            "reset password",
+                            "remove access",
+                            "remove member"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.327930Z",
+                    "modified_time": "2023-02-08T06:57:27.328228Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 56,
+            "name": "Longer-running analysis jobs",
+            "order": 5,
+            "status": 0,
+            "create_time": "2023-02-08T06:57:27.370463Z",
+            "modified_time": "2023-02-08T06:57:27.370677Z",
+            "container": 14,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 204,
+                    "name": "Analyze network activity",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 56,
+                    "description": "Conduct any resource-intensive analysis of network activity left over from the External Investigation and Internal Hunting phases. This could mean full packet capture collection and analysis, sandbox detonation of URLs, long-running queries of network history and anomalous behavior, or other similar analysis tasks.",
+                    "suggestions": {
+                        "actions": [
+                            "detonate url",
+                            "scan url",
+                            "ip dns history",
+                            "run query"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.381374Z",
+                    "modified_time": "2023-02-08T06:57:27.381659Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 203,
+                    "name": "Analyze endpoint activity",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 56,
+                    "description": "Conduct deeper analysis on remaining malware and endpoint investigation tasks not finished in the External Investigation and Internal Hunting phases. This could mean sandbox detonation of files, forensic analysis of associated devices or memory dumps, reverse engineering of suspected malware, long-running queries of endpoint activity history and anomalous behavior, or other similar analysis tasks.",
+                    "suggestions": {
+                        "actions": [
+                            "detonate file",
+                            "get process detail",
+                            "get command history",
+                            "get browser history",
+                            "get snapshot info"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.376925Z",
+                    "modified_time": "2023-02-08T06:57:27.377203Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 57,
+            "name": "Notification",
+            "order": 6,
+            "status": 0,
+            "create_time": "2023-02-08T06:57:27.385212Z",
+            "modified_time": "2023-02-08T06:57:27.385408Z",
+            "container": 14,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 210,
+                    "name": "Update tickets",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 57,
+                    "description": "Ensure that all the necessary outputs and status updates from the previous phases and tasks are documented in the appropriate system of record. Summarize the current state of the investigation and any remaining tasks.",
+                    "suggestions": {
+                        "actions": [
+                            "update ticket"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.424630Z",
+                    "modified_time": "2023-02-08T06:57:27.424887Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 209,
+                    "name": "Notify system owners",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 57,
+                    "description": "For any systems that have been changed or need to be changed, notify the necessary system owners so the appropriate change management procedures can be followed.",
+                    "suggestions": {
+                        "actions": [
+                            "create ticket",
+                            "send email",
+                            "send message"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.418992Z",
+                    "modified_time": "2023-02-08T06:57:27.419360Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 208,
+                    "name": "Notify regulatory compliance team",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 57,
+                    "description": "If appropriate, notify the regulatory compliance team to support them as they report this incident to the correct regulatory or accrediting organizations.",
+                    "suggestions": {
+                        "actions": [
+                            "create ticket",
+                            "send email",
+                            "send message"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.410665Z",
+                    "modified_time": "2023-02-08T06:57:27.410942Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 207,
+                    "name": "Assign additional tasks",
+                    "order": 4,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 57,
+                    "description": "Create tickets to track any follow-on tasks that came out of this case. Example tasks may include conducting deeper endpoint investigation, re-provisioning systems, re-enabling accounts, or tuning filtering systems to block future emails.",
+                    "suggestions": {
+                        "actions": [
+                            "create ticket",
+                            "create alert",
+                            "send email",
+                            "send message"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.404958Z",
+                    "modified_time": "2023-02-08T06:57:27.405353Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 206,
+                    "name": "Educate users",
+                    "order": 5,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 57,
+                    "description": "If appropriate, inform the broader user base about the types of suspicious emails being sent to the organization to try to prevent them from clicking on malicious links or opening malicious file attachments in the future.",
+                    "suggestions": {
+                        "actions": [
+                            "send email",
+                            "send message"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.397914Z",
+                    "modified_time": "2023-02-08T06:57:27.398296Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 205,
+                    "name": "Share threat intelligence",
+                    "order": 6,
+                    "owner": null,
+                    "role": null,
+                    "container": 14,
+                    "phase": 57,
+                    "description": "If appropriate, communicate relevant findings to trusted third parties and/or the public threat intelligence community. Ensure that outbound messages do not contain confidential information. Consider sharing or confirming the usage of indicators and techniques to peer organizations, security vendors, public databases, or industry-specific threat intelligence sharing communities.",
+                    "suggestions": {
+                        "actions": [
+                            "post data",
+                            "send message",
+                            "send email"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:57:27.391755Z",
+                    "modified_time": "2023-02-08T06:57:27.392031Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        }
+    ]
+}

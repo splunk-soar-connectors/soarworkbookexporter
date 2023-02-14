@@ -1,0 +1,528 @@
+{
+    "count": 6,
+    "num_pages": 1,
+    "data": [
+        {
+            "id": 37,
+            "name": "Escalate to accountable system owners",
+            "order": 1,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:58.700162Z",
+            "modified_time": "2023-02-08T06:53:58.700394Z",
+            "container": 9,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 140,
+                    "name": "Identify accountable system owners",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 37,
+                    "description": "Query configuration management databases, ask teammates, and query on-call personnel directories to find the right people for notification and response.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "list oncalls",
+                            "get oncall",
+                            "get system attributes",
+                            "get user attributes",
+                            "get users",
+                            "ask question"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "track_active_directory_admin_users",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.720955Z",
+                    "modified_time": "2023-02-08T06:53:58.721298Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 139,
+                    "name": "Notify accountable system owners",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 37,
+                    "description": "Determine what is needed from each team member and notify them as soon as possible. Consider speed, confidentiality, integrity, and availability when choosing a communication channel. The right choice may be an in-person meeting, email, chat, text, phone call, or Phantom Notification.",
+                    "suggestions": {
+                        "actions": [
+                            "send email",
+                            "send message",
+                            "create task"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "email_notification_for_malware",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.714350Z",
+                    "modified_time": "2023-02-08T06:53:58.714708Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 138,
+                    "name": "Setup collaboration channels",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 37,
+                    "description": "Establish shared access to the appropriate Phantom Mission Control that is tracking the data breach. If necessary establish an additional channel for communications such as a chat room, email chain, ticketing system, or VictorOps Incident.",
+                    "suggestions": {
+                        "actions": [
+                            "create event",
+                            "create investigation",
+                            "create alert",
+                            "create ticket"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "user_approved_ticket_creation",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.707465Z",
+                    "modified_time": "2023-02-08T06:53:58.707771Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 38,
+            "name": "Stop exfiltration",
+            "order": 2,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:58.726743Z",
+            "modified_time": "2023-02-08T06:53:58.726991Z",
+            "container": 9,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 143,
+                    "name": "Identify likely means of exfiltration",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 38,
+                    "description": "Evaluate likely means of exfiltration using the information from the initial detection and any other associated investigation the team can conduct. Use https://attack.mitre.org/wiki/Persistence and other open source intelligence to check for common exfiltration mechanisms. Consider the sophistication of the adversary, the data that is likely to be targeted, the systems that may have been breached, and any other knowledge from further investigation. Query the logs of any available systems around the time of the incident for context and additional leads. If possible analyze and/or reverse engineer any executables or scripts discovered in the investigation. Try to determine exfiltration mechanisms, protocols, ports, IP addresses, hostnames, URL's, and other indicators.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "run command",
+                            "detonate file",
+                            "detonate url",
+                            "file reputation",
+                            "get file",
+                            "get file info"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "symantec_ioc_data_enhancement",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "email_notification_for_malware",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "ssh_endpoint_investigate",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.740769Z",
+                    "modified_time": "2023-02-08T06:53:58.741154Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 142,
+                    "name": "Determine mitigations and remediations",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 38,
+                    "description": "Taking into account the confidentiality and availability considerations of the systems involved, determine which mitigations and remediations are appropriate.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "get data"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "alert_escalation_for_attacked_executives",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "alert_deescalation_for_test_machines",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.736429Z",
+                    "modified_time": "2023-02-08T06:53:58.736865Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 141,
+                    "name": "Stop exfiltration",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 38,
+                    "description": "Use host-based or network controls to interrupt exfiltration. Scope the response according to the severity of the event.",
+                    "suggestions": {
+                        "actions": [
+                            "block domain",
+                            "block ip",
+                            "block url",
+                            "block application",
+                            "quarantine device",
+                            "shutdown system",
+                            "delete file",
+                            "block hash"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "user_prompt_and_block_domain",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.732387Z",
+                    "modified_time": "2023-02-08T06:53:58.732664Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 39,
+            "name": "Remove persistent adversaries",
+            "order": 3,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:58.745006Z",
+            "modified_time": "2023-02-08T06:53:58.745291Z",
+            "container": 9,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 145,
+                    "name": "Identify likely means of persistence",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 39,
+                    "description": "Trace exfiltration as far as possible back toward a root cause. Look for patterns of activity from scheduled tasks, system restarts, polling of external systems, and other common means of persistence. Sysinternals AutoRuns and other similar tools can check wide varieties of persistence mechanisms.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "execute program",
+                            "detonate file"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "ssh_endpoint_investigate",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.755547Z",
+                    "modified_time": "2023-02-08T06:53:58.755949Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 144,
+                    "name": "Remove identified persistence mechanisms",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 39,
+                    "description": "Block adversary persistence at the host and/or network level.",
+                    "suggestions": {
+                        "actions": [
+                            "block file path",
+                            "block hash",
+                            "block ip",
+                            "block domain"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "user_prompt_and_block_domain",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.751521Z",
+                    "modified_time": "2023-02-08T06:53:58.751792Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 40,
+            "name": "Assess impact",
+            "order": 4,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:58.759681Z",
+            "modified_time": "2023-02-08T06:53:58.759975Z",
+            "container": 9,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 146,
+                    "name": "Measure the size and scope",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 40,
+                    "description": "Measure the impact of the breach by amount of data, importance of data, potential follow-on impacts, and other appropriate criteria.",
+                    "suggestions": {
+                        "actions": [
+                            "run query",
+                            "get data"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.765964Z",
+                    "modified_time": "2023-02-08T06:53:58.766217Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 41,
+            "name": "Report to appropriate stakeholders",
+            "order": 5,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:58.769983Z",
+            "modified_time": "2023-02-08T06:53:58.770267Z",
+            "container": 9,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 148,
+                    "name": "Identify appropriate stakeholders",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 41,
+                    "description": "Identify who should receive which information. This may include the regulatory compliance team, all internal employees, customers, partners, appropriate government officials, the public, system vendors, open source communities, and others.",
+                    "suggestions": {},
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.784927Z",
+                    "modified_time": "2023-02-08T06:53:58.785291Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 147,
+                    "name": "Send reports",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 41,
+                    "description": "Send the appropriate amount of information to identified parties. If it would be beneficial give them a way to respond.",
+                    "suggestions": {
+                        "actions": [
+                            "send email",
+                            "submit report"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.776074Z",
+                    "modified_time": "2023-02-08T06:53:58.776345Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        },
+        {
+            "id": 42,
+            "name": "Prevent future breaches",
+            "order": 6,
+            "status": 0,
+            "create_time": "2023-02-08T06:53:58.801375Z",
+            "modified_time": "2023-02-08T06:53:58.801682Z",
+            "container": 9,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 149,
+                    "name": "Prevent future breaches",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 9,
+                    "phase": 42,
+                    "description": "Use information from this case to investigate further, apply patches, prevent behaviors, change systems, and otherwise prevent similar situations from occurring again. Setup automated checks for reinfection using similar indicators or TTP's.",
+                    "suggestions": {
+                        "actions": [
+                            "deploy patch",
+                            "block hash",
+                            "block application"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "reinfected_endpoint_check",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:53:58.813308Z",
+                    "modified_time": "2023-02-08T06:53:58.813731Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        }
+    ]
+}

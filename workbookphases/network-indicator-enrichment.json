@@ -1,0 +1,216 @@
+{
+    "count": 1,
+    "num_pages": 1,
+    "data": [
+        {
+            "id": 43,
+            "name": "Network Indicator Enrichment",
+            "order": 1,
+            "status": 0,
+            "create_time": "2023-02-08T06:54:53.735718Z",
+            "modified_time": "2023-02-08T06:54:53.735972Z",
+            "container": 10,
+            "sla": null,
+            "sla_type": "minutes",
+            "start_time": null,
+            "end_time": null,
+            "tasks": [
+                {
+                    "id": 154,
+                    "name": "Enrich URLs",
+                    "order": 1,
+                    "owner": null,
+                    "role": null,
+                    "container": 10,
+                    "phase": 43,
+                    "description": "Gather reputation and behavioral information about a suspicious URL. Automated actions may include querying threat intelligence databases, dynamic profiling of the URL and the associated redirects, or checking the categorization of a URL in a proxy or other safe browsing tool. Manual actions may include checking for typosquatting/brandjacking, evaluating the appropriateness of the URL given the context in which it was detected, or manually investigating the site from a sandboxed environment. Additionally it might be appropriate to simply ask the user if they can explain why the URL was accessed. Outputs from this task could be used to pivot to investigation of underlying or associated domain names, other URLs, TLS certificates, IP addresses, or specific behaviors associated with the website such as Javascript execution patterns or downloaded files.",
+                    "suggestions": {
+                        "actions": [
+                            "url reputation",
+                            "detonate url",
+                            "lookup url",
+                            "run query",
+                            "ask question"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "simple_network_enrichment",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "symantec_proxysg_unblock_request",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:54:53.764252Z",
+                    "modified_time": "2023-02-08T06:54:53.764545Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 153,
+                    "name": "Enrich domain names",
+                    "order": 2,
+                    "owner": null,
+                    "role": null,
+                    "container": 10,
+                    "phase": 43,
+                    "description": "Domain names can be involved in investigations of phishing, watering hole attacks, malware command and control, exfiltration, and many other malicious behaviors. Some of the key questions to answer about a domain are: Who controls the domain? Who registered the domain? What is the purpose of the domain? What services are hosted on the domain? What traffic would you expect to see to and from the domain? How popular is the domain? Does the domain host dynamic content such as cloud services? What sub-domains or parent domains are associated with the domain? Is the domain known to host malicious content? Where in the world is the domain hosted? How recently was the domain registered? What is the DNS history of the domain? Is the domain meant to look similar to another more legitimate domain? Does the domain name appear to have been randomly generated? The results of these queries can produce related IP addresses, file hashes, downloaded files, URLs, TLS certificates, and behaviors which are useful elsewhere in this investigation.",
+                    "suggestions": {
+                        "actions": [
+                            "domain reputation",
+                            "domain dns history",
+                            "geolocate domain",
+                            "lookup domain",
+                            "whois domain",
+                            "whois history",
+                            "query domain"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "simple_network_enrichment",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "symantec_ioc_data_enhancement",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:54:53.759219Z",
+                    "modified_time": "2023-02-08T06:54:53.759515Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 152,
+                    "name": "Enrich IP addresses",
+                    "order": 3,
+                    "owner": null,
+                    "role": null,
+                    "container": 10,
+                    "phase": 43,
+                    "description": "Enrichment of IP addresses should be similar to domain names in many ways, but typically IP addresses will change more frequently. Frequent changes can be legitimate behavior caused by load balancers or content delivery networks, or it may be malicious behavior due to fast flux DNS changes, so additional context about the network traffic is needed. Also consider that traffic going straight to an IP address without doing a DNS query may be relevant to the investigation, and consider querying Tor or other anonymization systems to check if the IP address is a known exit node. Outputs of this task can inform URL enrichment, downloaded file analysis, domain name enrichment, TLS certificate enrichment, and more advanced behavioral analysis based on the services hosted at the IP address in question.",
+                    "suggestions": {
+                        "actions": [
+                            "ip reputation",
+                            "lookup ip",
+                            "reverse ip",
+                            "ip dns history",
+                            "whois ip",
+                            "query ip",
+                            "geolocate ip"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "ip_investigate_and_report",
+                                "already_run": false
+                            },
+                            {
+                                "scm": "community",
+                                "playbook": "simple_network_enrichment",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:54:53.753747Z",
+                    "modified_time": "2023-02-08T06:54:53.754044Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 151,
+                    "name": "Enrich TLS certificates",
+                    "order": 4,
+                    "owner": null,
+                    "role": null,
+                    "container": 10,
+                    "phase": 43,
+                    "description": "If an investigation involves a TLS certificate it may be useful to gather registrant and certificate authority information about that certificate, and to query for other usages of similar infrastructure. The usage of free and automated certificate authorities such as Let's Encrypt does not necessarily imply that a domain is malicious, but that is a common technique used to build malicious infrastructure so it should warrant further investigation. Consider comparing the registrant information and certificate authority chain with the expected values for the organization allegedly hosting the website in question.",
+                    "suggestions": {
+                        "actions": [
+                            "query certificate",
+                            "lookup certificate"
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:54:53.748342Z",
+                    "modified_time": "2023-02-08T06:54:53.748671Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                },
+                {
+                    "id": 150,
+                    "name": "Enrich MAC addresses",
+                    "order": 5,
+                    "owner": null,
+                    "role": null,
+                    "container": 10,
+                    "phase": 43,
+                    "description": "While MAC (media access control) addresses are less frequently involved in security investigations, when they are present they can sometimes be useful to cross-reference, identify, or profile a device. MAC addresses can be changed and spoofed, but it is usually less common than a change in IP address or hostname. In wifi investigations the MAC address can be used to identify both the access point and the clients that connect to it.",
+                    "suggestions": {
+                        "actions": [
+                            "lookup mac"
+                        ],
+                        "playbooks": [
+                            {
+                                "scm": "community",
+                                "playbook": "rogue_wireless_access_point_remediate",
+                                "already_run": false
+                            }
+                        ]
+                    },
+                    "status": 0,
+                    "create_time": "2023-02-08T06:54:53.742292Z",
+                    "modified_time": "2023-02-08T06:54:53.742581Z",
+                    "notified": false,
+                    "is_note_required": true,
+                    "sla": null,
+                    "sla_type": "minutes",
+                    "start_time": null,
+                    "end_time": null,
+                    "notes": [],
+                    "files": [],
+                    "owner_name": null
+                }
+            ]
+        }
+    ]
+}
